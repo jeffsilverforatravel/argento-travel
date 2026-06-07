@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Argento Travel — Thoughtfully designed global travel. Curated journeys by Jeff Silver, in association with Fora Travel, a Virtuoso member agency.">
+<title>Argento Travel — Signature Journeys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF8F4;
+    --ink: #1A1714;
+    --charcoal: #2E2A26;
+    --mid: #6B6155;
+    --gold: #A07840;
+    --gold-light: #C49A5A;
+    --rule: #D8CFC0;
+    --soft: #EDE8DE;
+    --dark-panel: #1A1714;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,248,244,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 60px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh;
+    background: var(--dark-panel);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(to bottom, rgba(26,23,20,0.3) 0%, rgba(26,23,20,0.85) 100%),
+      url('https://img1.wsimg.com/isteam/getty/2130934199') center/cover no-repeat;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+  }
+
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #F0EAE0;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #9A8E80;
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 44px;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    border: 1px solid rgba(192,154,90,0.5);
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 36px;
+    transition: all 0.3s;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--cream);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    right: 60px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4A4540;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scroll-hint::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: #4A4540;
+  }
+
+  /* ── SHARED SECTION STYLES ── */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: 40px;
+  }
+
+  /* ── INTRO / ABOUT ── */
+  .about {
+    padding: 100px 60px;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .about-text p {
+    font-size: 16px;
+    color: var(--charcoal);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-text strong { color: var(--ink); font-weight: 500; }
+
+  .about-sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--mid);
+    margin-top: 28px;
+    display: block;
+  }
+
+  .about-credentials {
+    border-left: 1px solid var(--rule);
+    padding-left: 60px;
+  }
+
+  .cred-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cred-item:last-child { border-bottom: none; }
+
+  .cred-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .cred-label {
+    font-size: 12px;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── BY EXPERIENCE ── */
+  .experience {
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+    align-items: end;
+  }
+
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+  }
+
+  .type-card {
+    background: var(--warm-white);
+    padding: 36px 32px;
+  }
+
+  .type-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+  }
+
+  .type-card ul { list-style: none; }
+
+  .type-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--soft);
+    font-size: 13px;
+    color: var(--charcoal);
+  }
+
+  .type-card ul li:last-child { border-bottom: none; }
+
+  .type-card ul li span {
+    display: block;
+    font-size: 11px;
+    color: var(--mid);
+    margin-top: 2px;
+  }
+
+  /* ── JOURNEYS ── */
+  .journeys {
+    background: var(--cream);
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .duration-block { margin-bottom: 60px; }
+  .duration-block:last-child { margin-bottom: 0; }
+
+  .duration-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+    margin-bottom: 28px;
+  }
+
+  .journey-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .journey-col:first-child {
+    padding-right: 48px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .journey-col:last-child { padding-left: 48px; }
+
+  .region-head {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+    margin-top: 28px;
+  }
+
+  .region-head:first-child { margin-top: 0; }
+
+  .trip-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--soft);
+    gap: 16px;
+  }
+
+  .trip-row:last-child { border-bottom: none; }
+
+  .trip-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .trip-stops {
+    font-size: 11px;
+    color: var(--mid);
+    text-align: right;
+  }
+
+  /* ── CRUISES ── */
+  .cruises {
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cruise-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 52px;
+    align-items: end;
+  }
+
+  .cruise-note {
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.85;
+  }
+
+  .cruise-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .cruise-col:first-child {
+    padding-right: 48px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .cruise-col:last-child { padding-left: 48px; }
+
+  .cruise-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── FAVORITES ── */
+  .favorites {
+    background: var(--dark-panel);
+    padding: 100px 60px;
+  }
+
+  .favorites .section-label { color: var(--gold-light); }
+
+  .favorites .section-title { color: #F0EAE0; }
+
+  .favorites .section-desc { color: #9A8E80; }
+
+  .fav-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .fav-col:first-child {
+    padding-right: 48px;
+    border-right: 1px solid #2E2A25;
+  }
+
+  .fav-col:last-child { padding-left: 48px; }
+
+  .fav-item {
+    padding: 18px 0;
+    border-bottom: 1px solid #2E2A25;
+  }
+
+  .fav-item:last-child { border-bottom: none; }
+
+  .fav-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #F0EAE0;
+    margin-bottom: 5px;
+  }
+
+  .fav-item p {
+    font-size: 13px;
+    color: #7A6E62;
+    line-height: 1.75;
+  }
+
+  .fav-last {
+    padding: 18px 0;
+  }
+
+  .fav-last h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+  }
+
+  .fav-last p { font-size: 13px; color: #7A6E62; line-height: 1.75; }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 100px 60px;
+    background: var(--cream);
+    text-align: center;
+    border-top: 2px solid var(--ink);
+  }
+
+  .contact .section-title {
+    font-size: clamp(32px, 5vw, 52px);
+    margin-bottom: 20px;
+  }
+
+  .contact .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .contact-offer {
+    font-size: 16px;
+    color: var(--charcoal);
+    line-height: 1.9;
+    max-width: 520px;
+    margin: 0 auto 40px;
+  }
+
+  .contact-offer strong { color: var(--ink); font-weight: 500; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 44px;
+    transition: background 0.2s;
+    margin-bottom: 52px;
+  }
+
+  .btn-primary:hover { background: var(--charcoal); }
+
+  .contact-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 auto 36px;
+  }
+
+  .contact-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--charcoal);
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 52px;
+    margin-bottom: 32px;
+  }
+
+  .contact-item .c-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .contact-item a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item a:hover { color: var(--gold); }
+
+  .affiliation {
+    font-size: 12px;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .f-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4A4540;
+  }
+
+  footer p { font-size: 11px; color: #4A4540; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    nav { padding: 0 20px; height: 56px; }
+    .nav-links { display: none; }
+
+    /* Hero — show full heading, push content down from nav */
+    .hero { padding: 100px 24px 48px; justify-content: flex-start; padding-top: 120px; }
+    .hero h1 { font-size: 42px; margin-bottom: 16px; }
+    .hero-sub { font-size: 15px; margin-bottom: 32px; }
+    .hero-cta { padding: 14px 28px; }
+    .scroll-hint { display: none; }
+
+    /* Sections */
+    .about, .experience, .journeys, .cruises, .favorites, .contact { padding: 52px 20px; }
+
+    /* About */
+    .about { grid-template-columns: 1fr; gap: 36px; }
+    .about-credentials { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 36px; }
+
+    /* Experience header */
+    .exp-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+    .section-desc { margin-bottom: 24px; }
+
+    /* Trip type cards — single column */
+    .type-grid { grid-template-columns: 1fr; }
+
+    /* Journey columns — single column */
+    .journey-cols { grid-template-columns: 1fr; }
+    .journey-col:first-child { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 32px; margin-bottom: 32px; }
+    .journey-col:last-child { padding-left: 0; }
+
+    /* Trip rows — stack destination above stops */
+    .trip-row { flex-direction: column; align-items: flex-start; gap: 2px; padding: 10px 0; }
+    .trip-stops { text-align: left; }
+
+    /* Cruise */
+    .cruise-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+    .cruise-cols { grid-template-columns: 1fr; }
+    .cruise-col:first-child { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 32px; margin-bottom: 32px; }
+    .cruise-col:last-child { padding-left: 0; }
+
+    /* Favorites */
+    .fav-grid { grid-template-columns: 1fr; }
+    .fav-col:first-child { padding-right: 0; border-right: none; border-bottom: 1px solid #2E2A25; padding-bottom: 32px; margin-bottom: 32px; }
+    .fav-col:last-child { padding-left: 0; }
+
+    /* Contact */
+    .contact-details { flex-direction: column; gap: 24px; }
+    .contact-item a { font-size: 18px; }
+
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Argento Travel</a>
+  <ul class="nav-links">
+    <li><a href="#experience">By Experience</a></li>
+    <li><a href="#journeys">Journeys</a></li>
+    <li><a href="#cruises">Cruises</a></li>
+    <li><a href="#favorites">Favorites</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-label">Argento Travel</span>
+    <h1>Thoughtfully<br>designed <em>global</em><br>travel.</h1>
+    <p class="hero-sub">Curated journeys for people who travel with intention. Organized by experience, not by map.</p>
+    <a href="#contact" class="hero-cta">Start planning</a>
+  </div>
+  <div class="scroll-hint">Explore</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text fade-up">
+    <span class="section-label">A note from Jeff</span>
+    <p>This is a resource I put together for anyone who loves to travel — or has been meaning to. It's a curated map of the world's best journeys, organized the way I think people actually plan trips: by the kind of experience you want, not by geography.</p>
+    <p>Browse it when the itch strikes. Forward it to someone who's been talking about finally taking that trip. And when you're ready to make something happen, <strong>I'm one email away.</strong></p>
+    <span class="about-sig">— Jeff Silver, Argento Travel</span>
+  </div>
+  <div class="about-credentials fade-up">
+    <div class="cred-item">
+      <div class="cred-num">50+</div>
+      <div class="cred-label">Countries traveled personally</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">Fora</div>
+      <div class="cred-label">In association with Fora Travel</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">V</div>
+      <div class="cred-label">Virtuoso member agency — preferred rates &amp; exclusive access worldwide</div>
+    </div>
+  </div>
+</section>
+
+<!-- BY EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="exp-header">
+    <div class="fade-up">
+      <span class="section-label">Start here</span>
+      <h2 class="section-title">Browse by<br>Experience</h2>
+    </div>
+    <p class="section-desc fade-up">Most people know the feeling they're after before they know where they want to go. Use this as your starting point — then we narrow it down together.</p>
+  </div>
+
+  <div class="type-grid fade-up">
+    <div class="type-card">
+      <h3>Safari &amp; Wildlife</h3>
+      <ul>
+        <li>Southern Africa<span>Namibia · Botswana · Cape Town</span></li>
+        <li>Kenya &amp; Tanzania<span>Masai Mara · Serengeti · Ngorongoro</span></li>
+        <li>Botswana<span>Okavango Delta · Chobe</span></li>
+        <li>Rwanda<span>Gorilla trekking · Volcanoes National Park</span></li>
+        <li>South Africa &amp; Victoria Falls<span>Cape Town · Winelands · Zambia</span></li>
+        <li>Galápagos<span>Small-ship naturalist voyages</span></li>
+      </ul>
+    </div>
+    <div class="type-card">
+      <h3>Food, Wine &amp; Culture</h3>
+      <ul>
+        <li>Italy<span>Florence · Tuscany · Amalfi Coast</span></li>
+        <li>Portugal<span>Porto · Douro · Lisbon · Cascais</span></li>
+        <li>Andalusia<span>Seville · Córdoba · Granada · White Villages</span></li>
+        <li>Japan<span>Tokyo · Hakone · Kyoto · Hiroshima</span></li>
+        <li>France<span>Paris · Loire Valley · Provence</span></li>
+        <li>Basque Country<span>Bilbao · San Sebastián · Getaria</span></li>
+        <li>Morocco<span>Marrakech · Atlas Mountains · Sahara · Fez</span></li>
+      </ul>
+    </div>
+    <div class="type-card">
+      <h3>Scenery &amp; Landscape</h3>
+      <ul>
+        <li>Norway<span>Fjords · Bergen · Lofoten Islands</span></li>
+        <li>Canadian Rockies<span>Banff · Jasper · Icefields Parkway</span></li>
+        <li>Patagonia<span>Torres del Paine · Los Glaciares</span></li>
+        <li>Iceland<span>Ring Road · glaciers · waterfalls</span></li>
+        <li>Switzerland<span>Lucerne · Lauterbrunnen · Zermatt</span></li>
+        <li>Scotland<span>Edinburgh · Highlands · Isle of Skye</span></li>
+      </ul>
+    </div>
+    <div class="type-card">
+      <h3>History &amp; Architecture</h3>
+      <ul>
+        <li>Greece<span>Athens · Cyclades · Crete</span></li>
+        <li>Peru<span>Lima · Sacred Valley · Machu Picchu</span></li>
+        <li>Japan<span>Kyoto temples · Nara · Hiroshima</span></li>
+        <li>India — Rajasthan<span>Delhi · Jaipur · Agra · Udaipur</span></li>
+        <li>Croatia<span>Split · Hvar · Korčula · Dubrovnik</span></li>
+        <li>Nepal &amp; Bhutan<span>Kathmandu · Paro · Thimphu</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEYS -->
+<section class="journeys" id="journeys">
+  <div class="fade-up">
+    <span class="section-label">By duration</span>
+    <h2 class="section-title">Signature Journeys</h2>
+    <p class="section-desc">From a focused week in one place to a two-week journey across several regions.</p>
+  </div>
+
+  <div class="duration-block fade-up">
+    <div class="duration-label">7–10 Days — Great European Weeks</div>
+    <div class="journey-cols">
+      <div class="journey-col">
+        <div class="trip-row"><span class="trip-name">London &amp; Cotswolds</span><span class="trip-stops">London · Oxford · Bath · Cotswolds</span></div>
+        <div class="trip-row"><span class="trip-name">Edinburgh &amp; the Highlands</span><span class="trip-stops">Edinburgh · Glencoe · Isle of Skye</span></div>
+        <div class="trip-row"><span class="trip-name">Lisbon, Cascais &amp; Sintra</span><span class="trip-stops">Lisbon · Cascais · Sintra</span></div>
+        <div class="trip-row"><span class="trip-name">Porto &amp; the Douro Valley</span><span class="trip-stops">Porto · Douro wine country</span></div>
+        <div class="trip-row"><span class="trip-name">Andalusia</span><span class="trip-stops">Seville · Córdoba · Granada</span></div>
+        <div class="trip-row"><span class="trip-name">Basque Country</span><span class="trip-stops">Bilbao · San Sebastián · Getaria</span></div>
+      </div>
+      <div class="journey-col">
+        <div class="trip-row"><span class="trip-name">Florence &amp; Tuscany</span><span class="trip-stops">Florence · Siena · Chianti</span></div>
+        <div class="trip-row"><span class="trip-name">Amalfi Coast &amp; Capri</span><span class="trip-stops">Naples · Positano · Capri</span></div>
+        <div class="trip-row"><span class="trip-name">Greek Islands — Cyclades</span><span class="trip-stops">Paros · Naxos · Milos</span></div>
+        <div class="trip-row"><span class="trip-name">Paris &amp; the Loire Valley</span><span class="trip-stops">Paris · Amboise · Chenonceau</span></div>
+        <div class="trip-row"><span class="trip-name">Provence &amp; South of France</span><span class="trip-stops">Avignon · Luberon · Nice</span></div>
+        <div class="trip-row"><span class="trip-name">Swiss Alps</span><span class="trip-stops">Lucerne · Lauterbrunnen · Zermatt</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duration-block fade-up">
+    <div class="duration-label">12–18 Days — Great Journeys</div>
+    <div class="journey-cols">
+      <div class="journey-col">
+        <div class="region-head">Europe</div>
+        <div class="trip-row"><span class="trip-name">Italy — Venice to Amalfi</span><span class="trip-stops">Venice · Florence · Tuscany · Amalfi</span></div>
+        <div class="trip-row"><span class="trip-name">Portugal — North to South</span><span class="trip-stops">Porto · Douro · Lisbon · Alentejo</span></div>
+        <div class="trip-row"><span class="trip-name">Spain — Madrid to the Coast</span><span class="trip-stops">Madrid · Andalusia · Marbella</span></div>
+        <div class="trip-row"><span class="trip-name">Norway — Fjords &amp; Lofoten</span><span class="trip-stops">Oslo · Bergen · Flåm · Lofoten</span></div>
+        <div class="trip-row"><span class="trip-name">France — Paris to Provence</span><span class="trip-stops">Paris · Loire Valley · Provence</span></div>
+        <div class="trip-row"><span class="trip-name">England &amp; Scotland</span><span class="trip-stops">London · Cotswolds · Edinburgh</span></div>
+        <div class="trip-row"><span class="trip-name">Greece — Athens &amp; Islands</span><span class="trip-stops">Athens · Cyclades · Crete</span></div>
+        <div class="trip-row"><span class="trip-name">Croatia — Dalmatian Coast</span><span class="trip-stops">Split · Hvar · Korčula · Dubrovnik</span></div>
+        <div class="trip-row"><span class="trip-name">Switzerland &amp; Northern Italy</span><span class="trip-stops">Zermatt · Milan · Lake Como</span></div>
+        <div class="region-head" style="margin-top:24px;">The Americas</div>
+        <div class="trip-row"><span class="trip-name">Peru — Sacred Valley &amp; Amazon</span><span class="trip-stops">Lima · Cusco · Machu Picchu</span></div>
+        <div class="trip-row"><span class="trip-name">Canadian Rockies</span><span class="trip-stops">Banff · Jasper · Icefields</span></div>
+        <div class="trip-row"><span class="trip-name">Australia</span><span class="trip-stops">Sydney · Uluru · Great Barrier Reef</span></div>
+      </div>
+      <div class="journey-col">
+        <div class="region-head">Africa</div>
+        <div class="trip-row"><span class="trip-name">Southern Africa</span><span class="trip-stops">Namibia · Botswana · Cape Town</span></div>
+        <div class="trip-row"><span class="trip-name">Kenya &amp; Tanzania</span><span class="trip-stops">Masai Mara · Serengeti · Ngorongoro</span></div>
+        <div class="trip-row"><span class="trip-name">South Africa &amp; Victoria Falls</span><span class="trip-stops">Cape Town · Winelands · Zambia</span></div>
+        <div class="trip-row"><span class="trip-name">Rwanda &amp; Kenya</span><span class="trip-stops">Gorilla trekking · Masai Mara</span></div>
+        <div class="trip-row"><span class="trip-name">Morocco — Cities &amp; Desert</span><span class="trip-stops">Marrakech · Atlas · Sahara · Fez</span></div>
+        <div class="region-head" style="margin-top:24px;">Asia &amp; Pacific</div>
+        <div class="trip-row"><span class="trip-name">Japan — Tokyo to Kyoto</span><span class="trip-stops">Tokyo · Hakone · Kyoto · Hiroshima</span></div>
+        <div class="trip-row"><span class="trip-name">Vietnam &amp; Cambodia</span><span class="trip-stops">Hanoi · Hoi An · Ho Chi Minh · Angkor</span></div>
+        <div class="trip-row"><span class="trip-name">India — Rajasthan</span><span class="trip-stops">Delhi · Jaipur · Agra · Udaipur</span></div>
+        <div class="trip-row"><span class="trip-name">Thailand &amp; Laos</span><span class="trip-stops">Bangkok · Chiang Mai · Luang Prabang</span></div>
+        <div class="trip-row"><span class="trip-name">Nepal &amp; Bhutan</span><span class="trip-stops">Kathmandu · Paro · Thimphu</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRUISES -->
+<section class="cruises" id="cruises">
+  <div class="cruise-header">
+    <div class="fade-up">
+      <span class="section-label">By sea</span>
+      <h2 class="section-title">Cruises, Expeditions<br>&amp; Charters</h2>
+    </div>
+    <div class="cruise-note fade-up">
+      I do cruises — just not the kind you're probably picturing. The ones worth talking about are small-ship expeditions, river journeys, and private yacht charters: trips where the vessel <em>is</em> the experience. If a cruise is on your radar, I can find the right one.
+    </div>
+  </div>
+
+  <div class="cruise-cols fade-up">
+    <div class="cruise-col">
+      <h4>Expedition</h4>
+      <div class="trip-row"><span class="trip-name">Antarctica</span><span class="trip-stops">Small-ship expeditions. Nothing else like it.</span></div>
+      <div class="trip-row"><span class="trip-name">Arctic &amp; Svalbard</span><span class="trip-stops">Polar bears · midnight sun · glaciers</span></div>
+      <div class="trip-row"><span class="trip-name">Galápagos</span><span class="trip-stops">Naturalist voyages · Darwin's islands</span></div>
+      <div class="trip-row"><span class="trip-name">Greenland</span><span class="trip-stops">Icebergs · remote fjords · dog sledding</span></div>
+      <div class="trip-row"><span class="trip-name">Alaska</span><span class="trip-stops">Glaciers · wildlife · wilderness</span></div>
+      <div class="trip-row"><span class="trip-name">Patagonia</span><span class="trip-stops">Torres del Paine · end of the world</span></div>
+    </div>
+    <div class="cruise-col">
+      <h4>River &amp; Yacht</h4>
+      <div class="trip-row"><span class="trip-name">France — Bordeaux &amp; Dordogne</span><span class="trip-stops">River cruise through wine country</span></div>
+      <div class="trip-row"><span class="trip-name">Danube — Vienna to Budapest</span><span class="trip-stops">Central Europe by river</span></div>
+      <div class="trip-row"><span class="trip-name">Douro Valley — Portugal</span><span class="trip-stops">Porto to the Spanish border</span></div>
+      <div class="trip-row"><span class="trip-name">Private Greek Yacht Charter</span><span class="trip-stops">Cyclades on your own vessel</span></div>
+      <div class="trip-row"><span class="trip-name">Croatian Yacht Charter</span><span class="trip-stops">Dalmatian islands · hidden coves</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAVORITES -->
+<section class="favorites" id="favorites">
+  <div class="fade-up">
+    <span class="section-label">Across 50+ countries</span>
+    <h2 class="section-title" style="color:#F0EAE0;">My Personal Favorites</h2>
+    <p class="section-desc">I've traveled to more than fifty countries over a lifetime. These are the places I find myself recommending most — not because they're the most obvious, but because they've stayed with me. Each one offers something totally unique and unforgettable.</p>
+  </div>
+
+  <div class="fav-grid fade-up">
+    <div class="fav-col">
+      <div class="fav-item">
+        <h4>Japan</h4>
+        <p>Unlike anywhere on earth. The contrast of ancient ritual and modern precision never gets old.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Italy</h4>
+        <p>The food, the art, the light in Tuscany in the late afternoon. It rewards every visit.</p>
+      </div>
+      <div class="fav-item">
+        <h4>France</h4>
+        <p>Paris is beloved by so many for good reason. But it's Provence and the Loire Valley that keep pulling me back.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Switzerland</h4>
+        <p>The Alps at their most dramatic. Zermatt and Lauterbrunnen belong on every serious traveler's list.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Ireland</h4>
+        <p>The landscape and the people in equal measure. Connemara and the Wild Atlantic Way are extraordinary.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Scotland</h4>
+        <p>Skye and the Highlands are among the most dramatic landscapes I've seen anywhere in the world.</p>
+      </div>
+    </div>
+    <div class="fav-col">
+      <div class="fav-item">
+        <h4>Thailand</h4>
+        <p>A fascinating destination that offers great value for your money. The temples, the food, the warmth of the people.</p>
+      </div>
+      <div class="fav-item">
+        <h4>India — Rajasthan</h4>
+        <p>Overwhelming in the best way. The color, the chaos, the palaces. Nothing prepares you for it.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Norway</h4>
+        <p>The fjords alone would be enough. Add Lofoten and it becomes one of Europe's great journeys.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Vietnam</h4>
+        <p>Hoi An is one of the most beautiful towns in Asia. The whole country surprises you.</p>
+      </div>
+      <div class="fav-item">
+        <h4>New Zealand</h4>
+        <p>The South Island in particular — Queenstown, Fiordland, Milford Sound. Scenery that stops you cold.</p>
+      </div>
+      <div class="fav-item">
+        <h4>Africa — Safari</h4>
+        <p>The Serengeti, Okavango Delta, Namibia. A great safari resets something in you. Everyone should do it at least once.</p>
+      </div>
+      <div class="fav-last">
+        <h4>And the next one on my list...</h4>
+        <p>There's always a next one. Ask me what I'm planning right now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <span class="section-label">Ready when you are</span>
+  <h2 class="section-title">Let's plan something<br><em>worth the trip.</em></h2>
+  <p class="contact-offer">Reply with a destination that's been on your mind — or just tell me how much time you have and what kind of experience you're after. <strong>I'll come back with two or three ideas</strong>, tailored to you, at no cost and no obligation.</p>
+  <a href="mailto:jeff.silver@fora.travel?subject=I'm interested in planning a trip" class="btn-primary">Start the conversation &rarr;</a>
+  <div class="contact-divider"></div>
+  <p class="contact-name">Jeff Silver &mdash; Argento Travel</p>
+  <div class="contact-details">
+    <div class="contact-item">
+      <span class="c-label">Phone</span>
+      <a href="tel:8184244804">818-424-4804</a>
+    </div>
+    <div class="contact-item">
+      <span class="c-label">Email</span>
+      <a href="mailto:jeff.silver@fora.travel">jeff.silver@fora.travel</a>
+    </div>
+  </div>
+  <p class="affiliation">Argento Travel &mdash; in association with Fora Travel, a Virtuoso member agency</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-logo">Argento Travel</span>
+  <p>&copy; 2026 Argento Travel &mdash; All Rights Reserved</p>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
